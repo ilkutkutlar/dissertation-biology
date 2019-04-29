@@ -1,3 +1,7 @@
+import sys
+
+sys.path.extend([".", "../../code"])
+
 from PyQt5.QtWidgets import QTabWidget, QFileDialog
 from PyQt5.QtWidgets import QVBoxLayout
 from PyQt5.QtWidgets import QWidget, QApplication, QMainWindow, QAction, QMessageBox
