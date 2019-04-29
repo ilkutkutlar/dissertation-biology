@@ -28,6 +28,7 @@ class Reaction:
     """
 
     def change_vector(self, n):
+        # How to obtain change vectors:
         # fpm + MmyR -> [k1] fpm:MmyR
         # ---------------------------
         # MmyR -= k1[MmyR][fpm]     | General: if MmyR in left, then MmyR -= (k) * (left1) * (left2)

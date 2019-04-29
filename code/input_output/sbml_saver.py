@@ -28,11 +28,6 @@ class SbmlSaver:
             spec.setCompartment("cell")
             spec.setHasOnlySubstanceUnits(True)
 
-        # parameters = {p.getId(): p.getValue() for p in x.getKineticLaw().getListOfParameters()}
-        # sbo = x.getSBOTerm()
-
-        symbols = []
-
         for r in net.reactions:
             reaction = model.createReaction()
             reaction.setName(r.name)

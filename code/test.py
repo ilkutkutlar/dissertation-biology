@@ -1,10 +1,7 @@
 from math import log, e
 
 from constraint_satisfaction.constraint import Constraint
-from constraint_satisfaction.constraint_satisfaction import ConstraintSatisfaction
 from constraint_satisfaction.mutable import VariableMutable, ReactionMutable
-from input_output.sbml_saver import SbmlSaver
-from models.formulae.custom_formula import CustomFormula
 from models.formulae.degradation_formula import DegradationFormula
 from models.formulae.transcription_formula import TranscriptionFormula
 from models.formulae.translation_formula import TranslationFormula
@@ -13,7 +10,6 @@ from models.network import Network
 from models.reaction import Reaction
 from models.reg_type import RegType
 from models.regulation import Regulation
-from models.simulation_settings import SimulationSettings
 
 
 def get_repressilator():
@@ -386,57 +382,3 @@ def get_mutables1():
     m3 = VariableMutable("Z", 1, 3, 1)
 
     return [m1, m2, m3]
-
-
-if __name__ == '__main__':
-    # repressilator_sim = SimulationSettings(0, 10 * 60, 1000, ["laci_p", "tetr_p", "cl_p"])
-
-    # net = get_test_network1()
-    # net1_sim = SimulationSettings(0, 100, 100, ["x", "y", "z"])
-
-    # mutables = [RegulationMutable("y_trans", ["px", "py", "pz"], VariableMutable("k", 1, 50, 1),
-    #                               [RegType.ACTIVATION, RegType.REPRESSION], True)]
-    # constraints = [Constraint("y", lambda x: x - 50, (20, 40))]
-    # schedule = ReverseEngineering.generate_schedule(100)
-
-    # n = ReverseEngineering.find_network(net, net1_sim, mutables, constraints, schedule)
-
-    # print(n.get_reaction_by_name("y_trans"))
-    # OdeSimulator.visualise(n, net1_sim, OdeSimulator.simulate(n, net1_sim))
-    # get_large_network()
-
-    net = get_test_network4()
-    cs = get_constraints1()
-    ms = get_mutables1()
-
-    sim = SimulationSettings(0, 100, 100, ["X", "Y", "Z"])
-
-    # t = ConstraintSatisfaction.generate_next_level(net, sim, cs, ms)
-    # for i in t:
-    #     for j in i[0]:
-    #         print(str(j.current_value))
-    #     print(str(i[1]))
-    #     print("-----")
-
-    f = ConstraintSatisfaction.find_network(net, sim, ms, cs)
-    print(f)
-
-
-def sbml_saver_test():
-    species = {"x": 0, "y": 20}
-
-    reg = Regulation("y", "x", RegType.REPRESSION, 40)
-    x_trans = TranscriptionFormula(5, "x")
-    x_trans.set_regulation(2, [reg])
-
-    reactions = [Reaction("", [], ["x"], x_trans),
-                 Reaction("", ["y"], [], DegradationFormula(0.3, "y")),
-                 Reaction("", ["y"], [], CustomFormula("10*2", {'r': 4}, {'t': 5}))]
-
-    net: Network = Network()
-    net.species = species
-    net.reactions = reactions
-
-    m = SbmlSaver.network_to_sbml(net)
-    print(m.getListOfReactions()[2].getKineticLaw().getListOfParameters()[0].getValue())
-    # print(helper.ast_to_string(m.getListOfReactions()[0].getKineticLaw().getMath()))

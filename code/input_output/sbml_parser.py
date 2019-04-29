@@ -6,12 +6,6 @@ from models.network import Network
 from models.reaction import Reaction
 
 
-# 1. Core objects of libsbml:
-# http://sbml.org/Software/libSBML/5.17.0/docs//python-api/group__core.html
-# 2. Classes:
-# http://sbml.org/Software/libSBML/5.17.0/docs//python-api/annotated.html
-
-
 class SbmlParser:
     """
     Return dictionary of species in a given model
@@ -84,21 +78,6 @@ class SbmlParser:
             left = [y.getSpecies() for y in reactants]
             right = [y.getSpecies() for y in products]
             parameters = {p.getId(): p.getValue() for p in x.getKineticLaw().getListOfParameters()}
-
-            sbo = x.getSBOTerm()
-
-            # 179 -> Degradation
-            # 183 -> Transcription
-            # 184 -> Translation
-
-            # if sbo == "179":
-            #     r = CustomFormula(rate_function, parameters, symbols)
-            # elif sbo == "183":
-            #     r = CustomFormula(rate_function, parameters, symbols)
-            # elif sbo == "184":
-            #     r = CustomFormula(rate_function, parameters, symbols)
-            # else:
-            #     r = CustomFormula(rate_function, parameters, symbols)
 
             r = CustomFormula(rate_function, parameters, net, time_multiplier)
             reactions.append(Reaction(x.getName(), left, right, r))

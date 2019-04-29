@@ -1,9 +1,8 @@
-import math
-
 import libsbml
+import math
 from PyQt5.QtGui import QDoubleValidator
 from PyQt5.QtWidgets import QMessageBox
-from libsbml._libsbml import formulaToL3String, parseL3Formula
+from libsbml._libsbml import formulaToL3String
 
 """
 Return evaluation of the given string equation

@@ -76,10 +76,6 @@ class RegulationMutable:
         if not self.is_installed:
             return True
         else:
-            # for x in to_species:
-            #   for y in reg_types:
-            #       for z in k:
-
             if self.k_variable.next():
                 return True
             else:

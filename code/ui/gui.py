@@ -144,15 +144,15 @@ class GeneWindow(QMainWindow):
         simulate.addAction(stochastic)
 
         # Help menu
-        help = self.menubar.addMenu("Help")
+        help_menu = self.menubar.addMenu("Help")
 
         help_units = QAction("Units", self)
         help_units.triggered.connect(self._help_units_clicked)
-        help.addAction(help_units)
+        help_menu.addAction(help_units)
 
         help_user_manual = QAction("User's Manual", self)
         help_user_manual.triggered.connect(self._help_user_manual_clicked)
-        help.addAction(help_user_manual)
+        help_menu.addAction(help_user_manual)
 
 
 app = QApplication([])
