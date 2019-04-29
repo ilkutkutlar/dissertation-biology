@@ -44,6 +44,12 @@ class SbmlSaver:
             law = reaction.createKineticLaw()
             law.setMath(parseL3Formula(r.rate_function.get_formula_string()))
 
+            for s in net.symbols:
+                param = model.createParameter()
+                param.setId(s)
+                param.setConstant(True)
+                param.setValue(net.symbols[s])
+
             if isinstance(r.rate_function, CustomFormula):
                 params = r.rate_function.parameters
                 for p in params:
