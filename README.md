@@ -2,6 +2,10 @@
 
 My Computer Science third year project (undergraduate dissertation) on Gene Regulatory Networks and Synthetic Biology.
 
+## Background
+
+Please read the included `Dissertation.pdf` file for the background of the project and how to use it.
+
 ## Installation
 
 First, install required packages with pip:
