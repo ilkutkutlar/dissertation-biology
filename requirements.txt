@@ -1,0 +1,6 @@
+python-libsbml
+matplotlib
+scipy
+numpy
+graphviz
+pyqt5

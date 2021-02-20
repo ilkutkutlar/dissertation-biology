@@ -1,5 +1,5 @@
 reports
-code/venv
-code/.idea
-code/__pycache__
-code/*/__pycache__
+src/venv
+src/.idea
+src/__pycache__/*
+src/*/__pycache__/*
